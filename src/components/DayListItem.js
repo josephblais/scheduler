@@ -13,7 +13,7 @@ let DayListItemClass = classNames("day-list__item",
 
 function formatSpots(spots) {
   if (spots === 0) {
-    return 'no spots remaining'
+return 'no spots remaining'
   } else if (spots === 1) {
     return '1 spot remaining'
   } else {
@@ -26,7 +26,7 @@ function formatSpots(spots) {
       className={DayListItemClass}
       onClick={() => props.setDay(props.name)}>
       <h2>{props.name}</h2> 
-      <h3 >{formatSpots(props.spots)}</h3>
+      <h3>{formatSpots(props.spots)}</h3>
     </li>
   );
 }
