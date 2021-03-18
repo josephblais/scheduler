@@ -6,12 +6,17 @@ const dayAppointments = []
 
   // access the specific day's appointment array
   //iterate through that array, comparing where id === states.appointments — return that value
-  const appointments = filteredDays.length && filteredDays[0].appointments.forEach(aptID => dayAppointments.push(state.appointments[aptID]) )
+  filteredDays.length && filteredDays[0].appointments.forEach(aptID => dayAppointments.push(state.appointments[aptID]))
 
   //if no state.days === day, return []
 
-  return dayAppointments
+  return dayAppointments;
 
+
+  // const dayFound = state.days.find(eachDay => eachDay.name === day)
+  // const appointments = dayFound.appointments.map(appointmentId => state.appointments[appointmentId])
+
+  // return appointments;
 }
 
 function getInterview(state, interview) {
