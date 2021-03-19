@@ -70,13 +70,30 @@ export default function Application(props) {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    // you may put the line below, but will have to remove/comment hardcoded appointments variable
     appointments: {},
     interviewers: {}
   });
   
   const setDay = day => setState({ ...state, day });
 
+  function bookInterview(id, interview) {
+    console.log(id, interview)
+    const appointment = {
+      ...state.appointments[id],
+      interview: {...interview}
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    }
+    // setState({
+    //   ...state,
+    //   appointments
+    // })
+    
+    return axios.put(`/api/appointments/${id}`, {interview})
+      .then(() => setState(prev => (({...prev, appointments}))))
+  }
   
   
   
@@ -95,7 +112,7 @@ export default function Application(props) {
   
 const appointments = getAppointmentsForDay(state, state.day);
 const interviewers = getInterviewsForDay(state, state.day);
-console.log('Application❤️', interviewers)
+// console.log('Application❤️', interviewers)
 
 const schedule = appointments.map((appointment) => {
   const interview = getInterview(state, appointment.interview);
@@ -107,6 +124,7 @@ const schedule = appointments.map((appointment) => {
       time={appointment.time}
       interview={interview}
       interviewers={interviewers}
+      bookInterview={bookInterview}
     />
   );
 });

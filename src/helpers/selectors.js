@@ -30,25 +30,13 @@ function getInterview(state, interview) {
 function getInterviewsForDay(state, day) {
   const dayInterviews = []
   
-    // find the object in state.days whose name === day
-    if (state.days) {
-
-      const filteredDays = state.days.filter(thisDay => thisDay.name === day)
+  if (state.days) {
+    const filteredDays = state.days.filter(thisDay => thisDay.name === day)
     
-  
-    // access the specific day's appointment array
-    //iterate through that array, comparing where id === states.appointments — return that value
     filteredDays.length && filteredDays[0].interviewers.forEach(interviewer => dayInterviews.push(state.interviewers[interviewer]))
   }
   
-    //if no state.days === day, return []
-  
-    return dayInterviews;
-
-      // const dayFound = state.days.find(eachDay => eachDay.name === day)
-  // const appointments = dayFound.appointments.map(appointmentId => state.appointments[appointmentId])
-
-  // return appointments;
+  return dayInterviews;
   }
 
 
