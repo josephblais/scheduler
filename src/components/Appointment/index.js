@@ -72,9 +72,9 @@ export default function Appointment(props) {
       onSave={save}
       />}
 
-      {mode === SAVING && <Status message={'saving...'}/>}
+      {mode === SAVING && <Status message={'Saving...'}/>}
 
-      {mode === DELETING && <Status message={'deleting...'} />}
+      {mode === DELETING && <Status message={'Deleting...'} />}
 
       {mode === CONFIRM && <Confirm
       onCancel={() => transition(SHOW)}
@@ -89,12 +89,12 @@ export default function Appointment(props) {
       />}
 
       {mode === ERROR_SAVE && <Error 
-      message={"Can't Save!"}
+      message={"Can't save... unable to access server"}
       onClose={back}
       />}
 
       {mode === ERROR_DELETE && <Error
-      message={"Can't Delete!"}
+      message={"Can't delete... unable to access server"}
       onClose={back} 
       />}
     </article>
