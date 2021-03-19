@@ -8,7 +8,7 @@ export default function useVisualMode(initial) {
     setMode(newMode);
     replace ?
       setHistory(prev => [...prev.slice(0,-1), newMode])
-      : setHistory([...history, newMode]); 
+      : setHistory(prev => [...prev, newMode]); 
   }
 
   function back() {
@@ -17,6 +17,6 @@ export default function useVisualMode(initial) {
       setHistory(prev => prev.slice(0, -1))
     }
   }
-  
+
   return { mode, transition, back };
 }
