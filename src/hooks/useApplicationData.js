@@ -11,6 +11,18 @@ import axios from 'axios';
 
   const setDay = day => setState({ ...state, day });
 
+  function updateSpots(days, appointments, id, value) {
+    // NB days needs to take a [...state.days]
+    days.forEach(day => {
+      if ((!appointments[id].interview && value === -1) || value === 1) {
+        if(day.appointments.includes(id)) {
+          day.spots = parseInt(day.spots) + value
+        }
+      }
+    })
+    return days;
+  }
+
   function bookInterview(id, interview) {
     console.log(id, interview)
     const appointment = {
@@ -22,8 +34,10 @@ import axios from 'axios';
       [id]: appointment
     }
 
+    const days = updateSpots([...state.days], state.appointments, id, -1)
+
     return axios.put(`/api/appointments/${id}`, {interview})
-      .then(() => setState(prev => ({...prev, appointments})))
+      .then(() => setState(prev => ({...prev, appointments, days})))
   }
 
   function cancelInterview(id) {
@@ -36,8 +50,10 @@ import axios from 'axios';
       [id]: appointment
     }
 
+    const days = updateSpots([...state.days], state.appointments, id, 1)
+
     return axios.delete(`/api/appointments/${id}`)
-      .then(() => setState(prev => ({...prev, appointments})))
+      .then(() => setState(prev => ({...prev, appointments, days})))
   }
 
   useEffect(()=> {
@@ -47,7 +63,7 @@ import axios from 'axios';
       axios.get('/api/interviewers')
     ]).then(all => {
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}))
-      console.log(all)
+      // console.log(all)
     })
     
   }, [])
