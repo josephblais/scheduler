@@ -106,10 +106,9 @@ describe("Application", () => {
     
     
     // 6. Wait until the element loads 
-    
     await waitForElement(() => getByText(appointment, "Jones Miller-Jones"));
     
-    // console.log(debug(appointment))
+    
     // 7. Check that the DayListItem with the text "Monday" has the text "1 spot remaining " 
     const day = getAllByTestId(container, "day").find(day => queryByText(day, "Monday"));
 
