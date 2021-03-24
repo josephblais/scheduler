@@ -11,18 +11,6 @@ import axios from 'axios';
 
   const setDay = day => setState({ ...state, day });
 
-  // function updateSpots(days, appointments, id, value) {
-  //   // NB days needs to take a [...state.days]
-  //   days.forEach(day => {
-  //     if ((!appointments[id].interview && value === -1) || value === 1) {
-  //       if(day.appointments.includes(id)) {
-  //         day.spots += value
-  //       }
-  //     }
-  //   })
-  //   return days;
-  // }
-
   function getNullSpots(day, appointments) {
     let count = 0;
     for (const id of day.appointments) {
@@ -38,12 +26,10 @@ import axios from 'axios';
     const day = spreadDays.find(item => item.name === dayName);
     const nulls = getNullSpots(day, appointments);
     day.spots = nulls;
-    //console.log(day.spots);
     return spreadDays;
   };
 
   function bookInterview(id, interview) {
-    // console.log(id, interview)
     const appointment = {
       ...state.appointments[id],
       interview: {...interview}
@@ -82,10 +68,9 @@ import axios from 'axios';
       axios.get('/api/interviewers')
     ]).then(all => {
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}))
-      // console.log(all)
     })
     
   }, [])
 
-  return {state, setDay, bookInterview, cancelInterview}
+  return { state, setDay, bookInterview, cancelInterview }
 }

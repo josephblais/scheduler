@@ -1,14 +1,14 @@
 import React from "react";
-import "./styles.scss"
-import useVisualMode from "../../hooks/useVisualMode"
+import "./styles.scss";
+import useVisualMode from "../../hooks/useVisualMode";
 
-import Header from "./Header"
-import Show from "./Show"
-import Empty from "./Empty"
-import Form from "./Form"
-import Status from "./Status"
-import Confirm from "./Confirm"
-import Error from "./Error"
+import Header from "./Header";
+import Show from "./Show";
+import Empty from "./Empty";
+import Form from "./Form";
+import Status from "./Status";
+import Confirm from "./Confirm";
+import Error from "./Error";
 
 export default function Appointment(props) {
 
@@ -17,8 +17,8 @@ export default function Appointment(props) {
   const CREATE = "CREATE";
   const SAVING = "SAVING";
   const CONFIRM = "CONFIRM";
-  const ERROR_SAVE = "ERROR_SAVE"
-  const ERROR_DELETE = "ERROR_DELETE"
+  const ERROR_SAVE = "ERROR_SAVE";
+  const ERROR_DELETE = "ERROR_DELETE";
   const EDIT = "EDIT";
   const DELETING = "DELETING";
   const { mode, transition, back } = useVisualMode(
