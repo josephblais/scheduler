@@ -18,8 +18,8 @@ Dependencies
   - Cypress
 
 ## Screenshots
-!["Screenshot of main view"](https://raw.githubusercontent.com/josephblais/scheduler/master/docs/screenshots/Scheduler-1.png)
-!["Screenshot of edit view"](https://raw.githubusercontent.com/josephblais/scheduler/master/docs/screenshots/Scheduler-2.png)
+!["Screenshot of main view"](https://raw.githubusercontent.com/josephblais/scheduler/master/docs/Scheduler-1.png)
+!["Screenshot of edit view"](https://raw.githubusercontent.com/josephblais/scheduler/master/docs/Scheduler-2.png)
 
 ## Running Webpack Development Server
 
