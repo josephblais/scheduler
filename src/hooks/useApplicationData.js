@@ -11,20 +11,39 @@ import axios from 'axios';
 
   const setDay = day => setState({ ...state, day });
 
-  function updateSpots(days, appointments, id, value) {
-    // NB days needs to take a [...state.days]
-    days.forEach(day => {
-      if ((!appointments[id].interview && value === -1) || value === 1) {
-        if(day.appointments.includes(id)) {
-          day.spots += value
-        }
+  // function updateSpots(days, appointments, id, value) {
+  //   // NB days needs to take a [...state.days]
+  //   days.forEach(day => {
+  //     if ((!appointments[id].interview && value === -1) || value === 1) {
+  //       if(day.appointments.includes(id)) {
+  //         day.spots += value
+  //       }
+  //     }
+  //   })
+  //   return days;
+  // }
+
+  function getNullSpots(day, appointments) {
+    let count = 0;
+    for (const id of day.appointments) {
+      const appointment = appointments[id];
+      if (!appointment.interview) {
+        count++
       }
-    })
-    return days;
-  }
+    }
+    return count;
+  };
+  function updateSpots(dayName, days, appointments) {
+    const spreadDays = [...days];
+    const day = spreadDays.find(item => item.name === dayName);
+    const nulls = getNullSpots(day, appointments);
+    day.spots = nulls;
+    //console.log(day.spots);
+    return spreadDays;
+  };
 
   function bookInterview(id, interview) {
-    console.log(id, interview)
+    // console.log(id, interview)
     const appointment = {
       ...state.appointments[id],
       interview: {...interview}
@@ -34,7 +53,7 @@ import axios from 'axios';
       [id]: appointment
     }
 
-    const days = updateSpots([...state.days], state.appointments, id, -1)
+    const days = updateSpots(state.day, state.days, appointments);
 
     return axios.put(`/api/appointments/${id}`, {interview})
       .then(() => setState(prev => ({...prev, appointments, days})))
@@ -50,7 +69,7 @@ import axios from 'axios';
       [id]: appointment
     }
 
-    const days = updateSpots([...state.days], state.appointments, id, 1)
+    const days = updateSpots(state.day, state.days, appointments);
 
     return axios.delete(`/api/appointments/${id}`)
       .then(() => setState(prev => ({...prev, appointments, days})))
