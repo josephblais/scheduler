@@ -18,8 +18,12 @@ Dependencies
   - Cypress
 
 ## Screenshots
-!["Screenshot of main view"](https://raw.githubusercontent.com/josephblais/scheduler/master/docs/Scheduler-1.png)
-!["Screenshot of edit view"](https://raw.githubusercontent.com/josephblais/scheduler/master/docs/Scheduler-2.png)
+
+### Add New Appointment
+!["Add New Appointment"](https://raw.githubusercontent.com/josephblais/scheduler/master/docs/new-apointment.gif)
+
+### Modify Appointment
+!["Modify Appointment"](https://raw.githubusercontent.com/josephblais/scheduler/master/docs/modify-apointment.gif)
 
 ## Running Webpack Development Server
 
